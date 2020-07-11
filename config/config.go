@@ -17,7 +17,7 @@ type List struct {
 var Config List
 
 func init() {
-	cfg, err := ini.Load("../config.ini")
+	cfg, err := ini.Load("config.ini")
 	if err != nil {
 		log.Printf("Failed to load config.ini: %v", err)
 		os.Exit(1)
