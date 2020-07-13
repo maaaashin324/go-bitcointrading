@@ -134,8 +134,8 @@ func (t *Ticker) DateTime() time.Time {
 	return dateTime
 }
 
-func (t *Ticker) TruncateDateTime(time.Duration) time.Time {
-	return t.DateTime().Truncate(time.Duration)
+func (t *Ticker) TruncateDateTime(duration time.Duration) time.Time {
+	return t.DateTime().Truncate(duration)
 }
 
 func (api *APIClient) GetTicker(productCode string) (*Ticker, error) {
