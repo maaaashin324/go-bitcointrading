@@ -170,7 +170,7 @@ type SubscribeParams struct {
 	Channel string `json:"channel"`
 }
 
-func (api *APIClient) GetRealtimeTicker(symbol string, ch chan Ticker) error {
+func (api *APIClient) GetRealtimeTicker(symbol string, ch chan Ticker) {
 	url := url.URL{Scheme: "wss", Host: "ws.lightstream.bitflyer.com", Path: "/json-rpc"}
 	log.Printf("connecting to %s", url.String())
 
@@ -190,7 +190,7 @@ OUTER:
 		message := new(JsonRPC2)
 		if err := c.ReadJSON(message); err != nil {
 			log.Printf("read: %s", err)
-			return err
+			return
 		}
 
 		if message.Method == "channelMessage" {
