@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"gotrading/app/models"
 	"gotrading/config"
 	"html/template"
 	"net/http"
@@ -10,7 +11,12 @@ import (
 var templates = template.Must(template.ParseFiles("app/views/google.html"))
 
 func viewChartHandler(w http.ResponseWriter, req *http.Request) {
-	err := templates.ExecuteTemplate(w, "google.html", nil)
+	limit := 100
+	duration := "1m"
+	durationTime := config.Config.Durations[duration]
+	df, _ := models.GetAllCandles(config.Config.ProductCode, durationTime, limit)
+
+	err := templates.ExecuteTemplate(w, "google.html", df.Candles)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
