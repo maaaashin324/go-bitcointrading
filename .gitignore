@@ -17,3 +17,4 @@
 # Customized
 config.ini
 *.log
+*.sql
