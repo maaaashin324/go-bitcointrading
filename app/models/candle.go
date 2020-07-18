@@ -71,7 +71,7 @@ func GetCandle(productCode string, duration time.Duration, dateTime time.Time) *
 func CreateCandleWithDuration(ticker bitflyer.Ticker, productCode string, duration time.Duration) bool {
 	currentCandle := GetCandle(productCode, duration, ticker.TruncateDateTime(duration))
 	price := ticker.GetMidPrice()
-	if currentCandle != nil {
+	if currentCandle == nil {
 		candle := NewCandle(productCode, duration, ticker.TruncateDateTime(duration), price, price, price, price, ticker.Volume)
 		candle.Create()
 		return true
