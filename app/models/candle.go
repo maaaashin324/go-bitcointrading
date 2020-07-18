@@ -106,7 +106,7 @@ func GetAllCandles(productCode string, duration time.Duration, limit int) (dfCan
 		var candle Candle
 		candle.ProductCode = productCode
 		candle.Duration = duration
-		rows.Scan(candle.Time, candle.Open, candle.Close, candle.High, candle.Low, candle.Volume)
+		rows.Scan(&candle.Time, &candle.Open, &candle.Close, &candle.High, &candle.Low, &candle.Volume)
 		dfCandle.Candles = append(dfCandle.Candles, candle)
 	}
 	err = rows.Err()
