@@ -22,7 +22,7 @@ func GetCandleTableName(productCode string, duration time.Duration) string {
 
 func init() {
 	var err error
-	DbConnection, err = sql.Open(config.Config.DbName, config.Config.SQLDriver)
+	DbConnection, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
 	if err != nil {
 		log.Fatalf("action=init in models, err=%s", err.Error())
 	}
